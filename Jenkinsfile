@@ -24,7 +24,7 @@ pipeline {
 
         stage('Run Playwright Tests transaction') {
             steps {
-                sh 'npx playwright test tests/spec/transaction.spec.ts'
+                sh 'npx playwright test'
             }
         }
     }

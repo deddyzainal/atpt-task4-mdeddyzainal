@@ -7,10 +7,6 @@ export class CartPage {
     await this.page.click('a[href="/view_cart"]');
   }
 
-  async expectVisual(filename: string) {
-    await expect(this.page).toHaveScreenshot(filename);
-  }
-
   async calculateTotal(): Promise<number> {
     const items = await this.page.$$('.cart_description');
     expect(items.length).toBe(3);

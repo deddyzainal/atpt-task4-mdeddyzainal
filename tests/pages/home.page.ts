@@ -10,8 +10,4 @@ export class HomePage {
   async goHome() {
     await this.page.click('a[href="/"]');
   }
-
-  async expectVisual(filename: string) {
-    await expect(this.page).toHaveScreenshot(filename);
-  }
 }

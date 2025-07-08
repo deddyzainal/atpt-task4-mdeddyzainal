@@ -8,11 +8,7 @@ export class CartService {
   }
 
   async verifyFinalTotal(): Promise<number> {
-    const finalTotalText = await this.page.locator(`xpath=//tr[td//h4/b[text()='Total Amount']]//p[@class="cart_total_price"]`).textContent();
+    const finalTotalText = await this.page.locator(`//tr[td//h4/b[text()='Total Amount']]//p[@class="cart_total_price"]`).textContent();
     return Number(finalTotalText?.replace(/[^0-9]/g, ''));
-  }
-
-  async expectVisual(filename: string) {
-    await expect(this.page).toHaveScreenshot(filename);
   }
 }

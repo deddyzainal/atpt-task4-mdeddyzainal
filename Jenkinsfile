@@ -5,6 +5,10 @@ pipeline {
         nodejs 'NodeJS 24'
     }
 
+    parameters {
+        booleanParam(name: 'UPDATE_VISUAL_SNAPSHOTS', defaultValue: false, description: 'Update visual snapshots')
+    }
+
     environment {
         HOME = "${env.WORKSPACE}"
     }
@@ -22,9 +26,15 @@ pipeline {
             }
         }
 
-        stage('Run Playwright Tests transaction') {
+        stage('Run Playwright Tests') {
             steps {
-                sh 'npx playwright test'
+                script {
+                    def cmd = 'npx playwright test'
+                    if (params.UPDATE_VISUAL_SNAPSHOTS) {
+                        cmd += ' --update-snapshots'
+                    }
+                    sh cmd
+                }
             }
         }
     }
